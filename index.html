@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farodis Shuxratov — Portfolio</title>
+<link rel="icon" type="image/jpeg" href="394.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12151c;
+    --ink-2:#1b212e;
+    --ink-3:#252c3b;
+    --paper:#f4f1ea;
+    --paper-2:#eae5d9;
+    --brass:#b3893f;
+    --brass-soft:#c9a869;
+    --indigo:#5872b0;
+    --text-hi:#f4f2ec;
+    --text-mid:#a9afbf;
+    --text-low:#767e91;
+    --rule:#333c50;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(rgba(18,21,28,0.18), rgba(18,21,28,0.18)),
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px),
+      var(--ink);
+    background-size: auto, 28px 28px, 28px 28px, auto;
+    background-position: center, center, center, center;
+    color:var(--text-hi);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Source Serif 4', serif;
+    margin:0;
+    font-weight:500;
+    color:var(--text-hi);
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  ::selection{background:var(--brass); color:var(--ink);}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(18,21,28,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:72px;
+  }
+  .brandmark{
+    font-family:'Source Serif 4', serif;
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+  }
+  .brandmark em{font-style:italic; color:var(--brass-soft);}
+  .navlinks{display:flex; gap:36px; font-size:0.92rem; color:var(--text-mid);}
+  .navlinks a{text-decoration:none; transition:color .2s ease;}
+  .navlinks a:hover{color:var(--text-hi);}
+  .navtoggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:96px 0 80px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--rule);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero-name{
+    font-size:clamp(3rem, 6.2vw, 5.4rem);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+  }
+  .hero-name .given{display:block; font-style:italic; font-weight:400; color:var(--brass-soft);}
+  .hero-name .family{display:block;}
+  .hero-tagline{
+    margin-top:28px;
+    max-width:46ch;
+    font-size:1.08rem;
+    color:var(--text-mid);
+  }
+  .scoreboard{
+    margin-top:48px;
+    display:flex;
+    border-top:1px solid var(--rule);
+  }
+  .score-item{
+    flex:1;
+    padding:20px 20px 0 0;
+    border-right:1px solid var(--rule);
+  }
+  .score-item:last-child{border-right:none;}
+  .score-num{
+    font-family:'Source Serif 4', serif;
+    font-size:2.1rem;
+    color:var(--text-hi);
+    font-variant-numeric:tabular-nums;
+  }
+  .score-label{
+    display:block;
+    margin-top:4px;
+    font-size:0.82rem;
+    color:var(--text-low);
+  }
+  .hero-art{
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-art svg{width:100%; height:auto; max-width:400px;}
+
+  .draw-circle{
+    stroke-dasharray:820;
+    stroke-dashoffset:820;
+    animation:draw 5s ease forwards 0.3s;
+  }
+  .draw-line{
+    stroke-dasharray:200;
+    stroke-dashoffset:200;
+    animation:draw 1.2s ease forwards 0.2s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .fade-up{
+    opacity:0; transform:translateY(14px);
+    animation:fadeUp .8s ease forwards;
+  }
+  .fade-up.d1{animation-delay:.05s;}
+  .fade-up.d2{animation-delay:.2s;}
+  .fade-up.d3{animation-delay:.35s;}
+  @keyframes fadeUp{ to{opacity:1; transform:none;} }
+
+  @media (prefers-reduced-motion: reduce){
+    .draw-circle,.draw-line,.fade-up{animation:none !important; opacity:1; transform:none; stroke-dashoffset:0;}
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  section{padding:96px 0;}
+  .section-head{
+    display:grid;
+    grid-template-columns:0.9fr 1.6fr;
+    gap:40px;
+    margin-bottom:56px;
+  }
+  .section-head h2{font-size:2.1rem;}
+  .section-head .lead{color:var(--text-mid); font-size:1.02rem; max-width:52ch;}
+
+  /* ---------- ABOUT ---------- */
+  #about{border-bottom:1px solid var(--rule);}
+  .about-facts{
+    list-style:none; margin:28px 0 0; padding:0;
+    display:grid; gap:14px;
+  }
+  .about-facts li{
+    display:flex; gap:14px; align-items:baseline;
+    font-size:0.95rem; color:var(--text-mid);
+    padding-bottom:14px; border-bottom:1px solid var(--rule);
+  }
+  .about-facts li span.tag{
+    font-family:'Source Serif 4', serif; font-style:italic;
+    color:var(--brass-soft); min-width:104px;
+  }
+
+  /* ---------- ACHIEVEMENTS ---------- */
+  #results{border-bottom:1px solid var(--rule);}
+  .cert{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:2px;
+    overflow:hidden;
+    margin-bottom:28px;
+    box-shadow:0 20px 50px -30px rgba(0,0,0,0.6);
+  }
+  .cert:last-child{margin-bottom:0;}
+  .cert.reverse{grid-template-columns:1fr 1fr;}
+  .cert.reverse .cert-visual{order:2;}
+  .cert.reverse .cert-text{order:1;}
+  .cert-visual{
+    padding:44px 40px;
+    display:flex; flex-direction:column; justify-content:center;
+    background:var(--paper-2);
+  }
+  .cert-text{
+    padding:44px 44px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .cert-kicker{
+    font-size:0.82rem; color:#7a6a4d; margin-bottom:10px;
+  }
+  .cert-text h3{
+    font-size:1.5rem; color:var(--ink); margin-bottom:14px;
+  }
+  .cert-text p{
+    color:#454b57; font-size:0.98rem;
+  }
+  .big-score{
+    font-family:'Source Serif 4', serif;
+    font-size:3.6rem;
+    color:var(--ink);
+    line-height:1;
+  }
+  .big-score sup{font-size:1.1rem; color:#8a8272; margin-left:6px; font-family:'IBM Plex Sans',sans-serif;}
+  .meter{
+    margin-top:20px; height:6px; background:#d8d2c2; border-radius:3px; overflow:hidden;
+  }
+  .meter > span{display:block; height:100%; background:var(--brass);}
+  .meter-ticks{
+    display:flex; justify-content:space-between; margin-top:6px;
+    font-size:0.72rem; color:#8a8272;
+  }
+  .medal-wrap{display:flex; align-items:center; gap:20px;}
+  .medal-wrap svg{width:96px; height:auto; flex-shrink:0;}
+  .medal-caption{font-family:'Source Serif 4', serif; font-size:1.3rem; color:var(--ink);}
+  .medal-sub{font-size:0.85rem; color:#8a8272; margin-top:4px;}
+
+  /* ---------- PROJECTS ---------- */
+  #projects{border-bottom:1px solid var(--rule);}
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:24px;
+  }
+  .project-card{
+    display:block;
+    text-decoration:none;
+    background:var(--ink-2);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    overflow:hidden;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .project-grid + .project-grid{
+    margin-top:15px;
+  }
+  .project-card:hover{
+    border-color:var(--brass-soft);
+    transform:translateY(-3px);
+  }
+  .project-chrome{
+    display:flex; gap:8px; align-items:center;
+    padding:12px 16px 10px;
+    background:transparent;
+    border-bottom:none;
+  }
+  .project-chrome i{
+    width:10px; height:10px; border-radius:50%; display:inline-block;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,0.08);
+  }
+  .project-chrome i:nth-child(1){background:#ff5f57;}
+  .project-chrome i:nth-child(2){background:#ffbd2e;}
+  .project-chrome i:nth-child(3){background:#28c840;}
+  .project-body{padding:26px 24px 28px;}
+  .project-body h3{font-size:1.25rem; margin-bottom:8px; color:var(--text-hi);}
+  .project-body p{font-size:0.92rem; color:var(--text-mid);}
+  .project-link{
+    margin-top:18px; font-size:0.85rem; color:var(--brass-soft);
+    display:flex; align-items:center; gap:6px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  #contact{
+    padding:96px 0 80px;
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:48px;
+    align-items:end;
+  }
+  #contact h2{font-size:2.4rem; max-width:14ch;}
+  .contact-list{list-style:none; margin:0; padding:0;}
+  .contact-list li{
+    padding:16px 0; border-top:1px solid var(--rule);
+    display:flex; justify-content:space-between; font-size:0.96rem;
+  }
+  .contact-list li:last-child{border-bottom:1px solid var(--rule);}
+  .contact-list span.k{color:var(--text-low);}
+  .contact-list a{text-decoration:none; color:var(--text-hi); transition:color .2s ease;}
+  .contact-list a:hover{color:var(--brass-soft);}
+
+  footer{
+    border-top:1px solid var(--rule);
+    padding:28px 0;
+    font-size:0.82rem; color:var(--text-low);
+    display:flex; justify-content:space-between;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .navlinks{display:none;}
+    .hero-grid{grid-template-columns:1fr; gap:36px;}
+    .hero-art{order:-1; max-width:260px; margin:0 auto;}
+    .scoreboard{flex-direction:column;}
+    .score-item{border-right:none; border-bottom:1px solid var(--rule); padding:16px 0;}
+    .score-item:last-child{border-bottom:none;}
+    .section-head{grid-template-columns:1fr;}
+    .cert, .cert.reverse{grid-template-columns:1fr;}
+    .cert.reverse .cert-visual{order:1;}
+    .cert.reverse .cert-text{order:2;}
+    .cert-visual, .cert-text{padding:32px 28px;}
+    .contact-grid{grid-template-columns:1fr;}
+    footer{flex-direction:column; gap:8px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brandmark">Farodis <em>Shuxratov</em></div>
+    <div class="navlinks">
+      <a href="#about">Men haqimda</a>
+      <a href="#results">Natijalar</a>
+      <a href="#projects">Loyihalar</a>
+      <a href="#contact">Aloqa</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 class="hero-name fade-up d1">
+        <span class="given">Farodis</span>
+        <span class="family">Shuxratov</span>
+      </h1>
+      <p class="hero-tagline fade-up d2">
+        Til, matematik mantiq va aniqlikka asoslangan ish uslubi — xalqaro
+        imtihonlar va olimpiadalarda tasdiqlangan natijalar orqali.
+      </p>
+
+      <div class="scoreboard fade-up d3">
+        <div class="score-item">
+          <span class="score-num">9.0</span>
+          <span class="score-label">IELTS, umumiy ball</span>
+        </div>
+        <div class="score-item">
+          <span class="score-num">1590</span>
+          <span class="score-label">SAT, 1600 balldan</span>
+        </div>
+        <div class="score-item">
+          <span class="score-num">Oltin</span>
+          <span class="score-label">IMO medali</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- faint grid -->
+        <g stroke="#333c50" stroke-width="1">
+          <line x1="0" y1="70" x2="400" y2="70"/>
+          <line x1="0" y1="140" x2="400" y2="140"/>
+          <line x1="0" y1="210" x2="400" y2="210"/>
+          <line x1="0" y1="280" x2="400" y2="280"/>
+          <line x1="0" y1="350" x2="400" y2="350"/>
+          <line x1="70" y1="0" x2="70" y2="420"/>
+          <line x1="140" y1="0" x2="140" y2="420"/>
+          <line x1="210" y1="0" x2="210" y2="420"/>
+          <line x1="280" y1="0" x2="280" y2="420"/>
+          <line x1="350" y1="0" x2="350" y2="420"/>
+        </g>
+        <!-- compass drawn circle -->
+        <circle class="draw-circle" cx="210" cy="220" r="130" stroke="#c9a869" stroke-width="2.5"/>
+        <!-- compass legs -->
+        <line class="draw-line" x1="210" y1="220" x2="90" y2="40" stroke="#5872b0" stroke-width="3" stroke-linecap="round"/>
+        <line class="draw-line" x1="210" y1="220" x2="210" y2="90" stroke="#5872b0" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="210" cy="220" r="4" fill="#f4f2ec"/>
+        <circle cx="90" cy="40" r="5" fill="#c9a869"/>
+        <circle cx="210" cy="90" r="5" fill="#c9a869"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Men haqimda</h2>
+      <div>
+        <p class="lead">
+          Men aniq fanlar va tillarni chuqur o'rganishga qiziqaman. Ish uslubim —
+          har bir natijaga izchil mashq va tizimli tayyorgarlik orqali erishish.
+          Quyidagi natijalar shu yondashuvning aniq dalili.
+        </p>
+        <ul class="about-facts">
+          <li><span class="tag">Til</span> IELTS imtihonida 9.0 ball — barcha to'rtta bo'lim bo'yicha yuqori daraja.</li>
+          <li><span class="tag">Analitika</span> SAT imtihonida 1590/1600 ball — matematika va o'qish-yozish bo'yicha yuqori aniqlik.</li>
+          <li><span class="tag">Musobaqa</span> Xalqaro Matematika Olimpiadasida (IMO) oltin medal sohibi.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Natijalar</h2>
+      <p class="lead">Uch xil sohada — tilni bilish, analitik fikrlash va musobaqa matematikasida — tasdiqlangan yuqori ko'rsatkichlar.</p>
+    </div>
+
+    <div class="cert">
+      <div class="cert-visual">
+        <div class="cert-kicker">IELTS Academic</div>
+        <div class="big-score">9.0<sup>/9.0</sup></div>
+        <div class="meter"><span style="width:100%"></span></div>
+        <div class="meter-ticks"><span>1</span><span>3</span><span>5</span><span>7</span><span>9</span></div>
+      </div>
+      <div class="cert-text">
+        <h3>IELTS — 9.0 umumiy ball</h3>
+        <p>Listening, Reading, Writing va Speaking bo'limlarining barchasida eng
+        yuqori bandda yakunlangan natija. Bu ball ingliz tilida akademik va
+        professional darajada erkin muloqot qila olishni tasdiqlaydi.</p>
+      </div>
+    </div>
+
+    <div class="cert reverse">
+      <div class="cert-visual">
+        <div class="cert-kicker">SAT</div>
+        <div class="big-score">1590<sup>/1600</sup></div>
+        <div class="meter"><span style="width:99.4%"></span></div>
+        <div class="meter-ticks"><span>400</span><span>800</span><span>1200</span><span>1600</span></div>
+      </div>
+      <div class="cert-text">
+        <h3>SAT — 1590 ball</h3>
+        <p>Math va Evidence-Based Reading &amp; Writing bo'limlari bo'yicha
+        deyarli mukammal natija. Bu ko'rsatkich analitik fikrlash va vaqtni
+        boshqarish qobiliyatining yuqori darajasini aks ettiradi.</p>
+      </div>
+    </div>
+
+    <div class="cert">
+      <div class="cert-visual">
+        <div class="cert-kicker">International Mathematical Olympiad</div>
+        <div class="medal-wrap">
+          <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+            <path d="M35 0 L65 0 L78 42 L22 42 Z" fill="#33477a"/>
+            <circle cx="50" cy="80" r="38" fill="#b3893f"/>
+            <circle cx="50" cy="80" r="38" fill="none" stroke="#8a6a2e" stroke-width="2"/>
+            <circle cx="50" cy="80" r="26" fill="none" stroke="#f4f1ea" stroke-width="1.5"/>
+            <text x="50" y="87" text-anchor="middle" font-family="Source Serif 4, serif" font-size="20" fill="#f4f1ea">I</text>
+          </svg>
+          <div>
+            <div class="medal-caption">Oltin medal</div>
+            <div class="medal-sub">IMO — xalqaro bosqich</div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-text">
+        <h3>IMO — Oltin medal</h3>
+        <p>Xalqaro Matematika Olimpiadasida qo'lga kiritilgan oltin medal —
+        og'ir masalalarni chuqur nazariy bilim va ijodiy yondashuv bilan
+        yechish qobiliyatining eng yuqori tan olinishi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Loyihalar</h2>
+      <p class="lead">Robototexnika va texnologiya yo'nalishida yaratilgan saytlar.</p>
+    </div>
+
+    <div class="project-grid">
+      <a class="project-card" href="file:///c:/Users/user/Desktop/otot/pro%20max/index_fixed.html" target="_blank" rel="noopener">
+        <div class="project-chrome">
+          <i></i><i></i><i></i>
+        </div>
+        <div class="project-body">
+          <h3>ForgeTech-26</h3>
+          <p>Robototexnika haqida zamonaviy ta'lim beruvchi sayt.</p>
+          <div class="project-link">Saytni ochish →</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="project-grid">              
+      <a class="project-card" href="file:///D:/farod-portfolio/index.html" target="_blank" rel="noopener">  
+        <div class="project-chrome">
+          <i></i><i></i><i></i>
+        </div>
+        <div class="project-body">
+          <h3># UI/UX dizayner</h3>
+          <p>Robototexnika haqida zamonaviy ta'lim beruvchi sayt.</p>
+          <div class="project-link">Saytni ochish →</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <h2>Bog'lanish uchun tayyorman.</h2>
+    <ul class="contact-list">
+      <li><span class="k">Email</span><a href="mailto:farodisshuxratov931@gmail.com">farodisshuxratov931@gmail.com</a></li>
+      <li><span class="k">Telegram</span><a href="https://t.me/Farodis_01" target="_blank" rel="noopener">@Farodis_01</a></li>
+      <li><span class="k">LinkedIn</span><a href="#" target="_blank" rel="noopener">linkedin.com/in/farodis</a></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
+    <span>© 2026 Farodis Shuxratov</span>
+    <span>Toshkent, O'zbekiston</span>
+  </div>
+</footer>
+
+</body>
+</html>
